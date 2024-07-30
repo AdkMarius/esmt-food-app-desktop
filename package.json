@@ -5,12 +5,14 @@
   "description": "Desktop food app",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
+    
+    "start": "webpack serve --hot",
     "electron": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "webpack && electron-forge make",
-    "publish": " webpack &&  electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "package": "npm run build && electron-forge package",
+    "make": "npm run build && electron-forge make",
+    "publish": "npm run build && electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "build": "webpack"
   },
 
   "devDependencies": {
