@@ -1,17 +1,20 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
-
+const isDev= process.env.NODE_ENV !== 'production';
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = () => {
+const createMainWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    title:'Esmt Food',
+    width: 500,
+    height: 1000,
     webPreferences: {
+      contextIsolation: true,
+      nodeIntegration:true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
@@ -20,20 +23,22 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (isDev){
+    mainWindow.webContents.openDevTools();
+}
 };
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+  createMainWindow();
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      createMainWindow();
     }
   });
 });
