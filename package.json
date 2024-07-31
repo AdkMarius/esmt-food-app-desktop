@@ -3,7 +3,7 @@
   "productName": "esmt-food-app-desktop",
   "version": "1.0.0",
   "description": "Desktop food app",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     
     "start": "webpack serve --hot",
