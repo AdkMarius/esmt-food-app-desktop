@@ -7,7 +7,7 @@ function App() {
     <div id="main">
       <Sidebar>
         <Routes>
-          <Route path="/" element={<DynamicItem page="./pages/login.jsx" />} />
+          <Route path="/" element={<DynamicItem page="./pages/Login.jsx" />} />
         </Routes>
       </Sidebar>
     </div>
