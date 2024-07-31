@@ -1,13 +1,17 @@
-import React from 'react';
+import { Routes, Route } from "react-router-dom";
+import { DynamicItem, Sidebar, dummyData } from "./components";
+import "./App.css";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>Bienvenue dans l'application ESMT Food</h1>
-      
+    <div id="main">
+      <Sidebar>
+        <Routes>
+          <Route path="/" element={<DynamicItem page="./pages/login.jsx" />} />
+        </Routes>
+      </Sidebar>
     </div>
-  
   );
-};
+}
 
 export default App;

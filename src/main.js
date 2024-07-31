@@ -10,8 +10,8 @@ const createMainWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     title:'Esmt Food',
-    width: 500,
-    height: 1000,
+    width: 600,
+    height: 750,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration:true,
