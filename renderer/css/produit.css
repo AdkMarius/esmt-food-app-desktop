@@ -136,6 +136,6 @@ h1,h2,h3 {
 
     .card {
         width: 12rem;
-        border-radius: 15px 15px 0 0; /* Arrondir les coins supérieurs gauche et droit */
+        border-radius: 37px 37px 35px 35px; /* Arrondir les coins supérieurs gauche et droit */
     }
     
