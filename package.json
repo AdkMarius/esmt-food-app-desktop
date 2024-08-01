@@ -10,5 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^31.3.1"
-  }
+  },
+  "keywords": [
+    "electron"
+  ]
 }
