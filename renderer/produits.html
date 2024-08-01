@@ -52,72 +52,7 @@
                 <!-- Products will be inserted here dynamically -->
             </div>
         </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Fetch the products data
-                fetch('data/produits.json')
-                    .then(response => response.json())
-                    .then(products => {
-                        const productList = document.getElementById('product-list');
-                        products.forEach(product => {
-                            // Create card column
-                            const col = document.createElement('div');
-                            col.className = 'col-sm-6 col-md-4 col-lg-3 mb-3'; // Responsive columns
-                            
-                            // Create card element
-                            const card = document.createElement('div');
-                            card.className = 'card';
-                            card.style.width = '9rem';
-                            card.style.height = '11rem';
-    
-                            // Add product image if available
-                            if (product.image) {
-                                const img = document.createElement('img');
-                                img.className = 'card-img-top';
-                                img.src = product.image;
-                                img.alt = product.name;
-                                img.style.height = '70px'; // Adjust height as specified
-                                card.appendChild(img);
-                            }
-    
-                            // Card body
-                            const cardBody = document.createElement('div');
-                            cardBody.className = 'card-body';
-                            card.appendChild(cardBody);
-    
-                            // Product name
-                            const name = document.createElement('h7');
-                            name.className = 'card-text';
-                            name.innerText = product.name;
-                            cardBody.appendChild(name);
-    
-                            // Price and action icon
-                            const details = document.createElement('div');
-                            details.className = 'd-flex justify-content-between align-items-center';
-                            cardBody.appendChild(details);
-    
-                            const price = document.createElement('p');
-                            price.className = 'mb-0 text-success';
-                            price.innerText = product.price + ' FCFA';
-                            details.appendChild(price);
-    
-                            const viewIcon = document.createElement('img');
-                            viewIcon.src = 'image/voir.png';
-                            viewIcon.alt = 'Voir';
-                            viewIcon.className = 'img-fluid';
-                            viewIcon.style.maxWidth = '16px';
-                            details.appendChild(viewIcon);
-    
-                            // Add the card to the column
-                            col.appendChild(card);
-    
-                            // Add the column to the product list
-                            productList.appendChild(col);
-                        });
-                    })
-                    .catch(error => console.error('Error loading products:', error));
-            });
-        </script>
+        
     <script src="js/script.js"></script>
 </body>
 </html>

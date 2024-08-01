@@ -6,8 +6,8 @@ const isDev= process.env.NODE_ENV !== 'production';
 function createMainWindow () {
     mainWindow = new BrowserWindow ({
         title: ' Esmt food app',
-        width: isDev ? 750 : 500,
-        height: 400,
+        width: isDev ? 1000 : 500,
+        height: 800,
         frame: false, 
         autoHideMenuBar: true,
         webPreferences: {
