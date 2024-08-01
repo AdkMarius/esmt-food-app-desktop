@@ -147,12 +147,7 @@ h1,h2,h3 {
 
         cursor: pointer;}
 
-        .card {
-            width: 12rem;
-            border-radius: 35px 35px 35px 35px; 
-            background-color: white;
-        }
-
+        
         .card-text {
             font-size: 13px;
         }
@@ -164,6 +159,38 @@ h1,h2,h3 {
             
 
         }
-        .price{
-                  font-size: 12px;
+    
+        .card {
+            width: 8rem;
+            height: 9rem;
+            margin: 10px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
         }
+        .card img {
+            height: 66px;
+            width: 100%; 
+            object-fit: cover; 
+        }
+        .card-body {
+            padding: 5px;
+        }
+        .price {
+            margin: 0;
+            color: green;
+            font-weight: bold;
+            font-size: 12px;
+
+        }
+        .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .details img {
+            width: 16px;
+            height: 16px;
+
+        };
