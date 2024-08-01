@@ -12,7 +12,7 @@
         "name": "Yassa poulet",
         "price": 1000,
         "available": true,
-        "image": "image/yassa-poulet.jpg",
+        "image": "image/yassa-poulet.png",
         "id_category": 1
     },
     {
@@ -60,7 +60,7 @@
         "name": "Pain viande hachée",
         "price": 500,
         "available": true,
-        "image": "image/viande-hachee.png",
+        "image": "image/viande-hachée.png",
         "id_category": 3
     },
     {
