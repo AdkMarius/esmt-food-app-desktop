@@ -100,9 +100,18 @@ document.addEventListener("DOMContentLoaded", function() {
               viewIcon.className = 'img-fluid'
               viewIcon.src = 'image/voir.png';
               viewIcon.alt = 'Voir';
+              viewIcon.style.cursor = 'pointer';
               details.appendChild(viewIcon);
 
+              viewIcon.addEventListener('click', () => {
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productId').value = product.id;
+                $('#editProductModal').modal('show');
+            });
+
               productList.appendChild(card);
+              
           });
       })
       .catch(error => console.error('Error loading products:', error));
