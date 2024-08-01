@@ -57,93 +57,176 @@ document.addEventListener('DOMContentLoaded', loadOrders);
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Fetch the products data
-  fetch('data/produits.json')
-      .then(response => response.json())
-      .then(products => {
-          const productList = document.getElementById('product-list');
-          products.forEach(product => {
-              // Create card element
-              const card = document.createElement('div');
-              card.className = 'card';
-              
-              if (product.image) {
-                  const img = document.createElement('img');
-                  img.className = 'card-img-top';
-                  img.src = product.image;
-                  img.alt = product.name;
-                  card.appendChild(img);
-              }
+    // Fetch the products data
+    fetch('data/produits.json')
+        .then(response => response.json())
+        .then(products => {
+            const productList = document.getElementById('product-list');
+            products.forEach(product => {
+                // Create card element
+                const card = document.createElement('div');
+                card.className = 'card';
 
-              // Card body
-              const cardBody = document.createElement('div');
-              cardBody.className = 'card-body';
-              card.appendChild(cardBody);
+                if (product.image) {
+                    const img = document.createElement('img');
+                    img.className = 'card-img-top';
+                    img.src = product.image;
+                    img.alt = product.name;
+                    card.appendChild(img);
+                }
 
-              // Product name
-              const name = document.createElement('p');
-              name.className = 'card-text';
-              name.innerText = product.name;
-              cardBody.appendChild(name);
+                // Card body
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                card.appendChild(cardBody);
 
-              // Price and action icon
-              const details = document.createElement('div');
-              details.className = 'details';
-              cardBody.appendChild(details);
+                // Product name
+                const name = document.createElement('p');
+                name.className = 'card-text';
+                name.innerText = product.name;
+                cardBody.appendChild(name);
 
-              const price = document.createElement('p');
-              price.className = 'price';
-              price.innerText = product.price + ' F';
-              details.appendChild(price);
+                // Price and action icon
+                const details = document.createElement('div');
+                details.className = 'details';
+                cardBody.appendChild(details);
 
-              const viewIcon = document.createElement('img');
-              viewIcon.className = 'img-fluid'
-              viewIcon.src = 'image/voir.png';
-              viewIcon.alt = 'Voir';
-              viewIcon.style.cursor = 'pointer';
-              details.appendChild(viewIcon);
+                const price = document.createElement('p');
+                price.className = 'price';
+                price.innerText = product.price + ' F';
+                details.appendChild(price);
 
-              viewIcon.addEventListener('click', () => {
-                document.getElementById('productName').value = product.name;
-                document.getElementById('productPrice').value = product.price;
-                document.getElementById('productId').value = product.id;
-                $('#editProductModal').modal('show');
+                const viewIcon = document.createElement('img');
+                viewIcon.className = 'img-fluid';
+                viewIcon.src = 'image/voir.png';
+                viewIcon.alt = 'Voir';
+                viewIcon.style.cursor = 'pointer';
+                details.appendChild(viewIcon);
+
+                viewIcon.addEventListener('click', () => {
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productId').value = product.id;
+                    $('#editProductModal').modal('show');
+                });
+
+                productList.appendChild(card);
             });
 
-              productList.appendChild(card);
-          });
+            // Handle the save button click event in the modal
+            document.getElementById('saveProductChanges').addEventListener('click', () => {
+                const id = document.getElementById('productId').value;
+                const updatedName = document.getElementById('productName').value;
+                const updatedPrice = document.getElementById('productPrice').value;
 
-          // Handle the save button click event in the modal
-          document.getElementById('saveChangesButton').addEventListener('click', () => {
-              const id = document.getElementById('productId').value;
-              const updatedName = document.getElementById('productName').value;
-              const updatedPrice = document.getElementById('productPrice').value;
+                // Find the product and update its data
+                const product = products.find(p => p.id == id);
+                if (product) {
+                    product.name = updatedName;
+                    product.price = updatedPrice;
 
-              // Find the product and update its data
-              const product = products.find(p => p.id == id);
-              if (product) {
-                  product.name = updatedName;
-                  product.price = updatedPrice;
-                  
-                  // Send updated product data to the server (Assuming an API endpoint exists)
-                  fetch(`/updateProduct/${id}`, {
-                      method: 'PUT',
-                      headers: {
-                          'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(product)
-                  })
-                  .then(response => response.json())
-                  .then(updatedProduct => {
-                      // Optionally, update the UI or give feedback to the user
-                      console.log('Product updated:', updatedProduct);
-                  })
-                  .catch(error => console.error('Error updating product:', error));
-              }
+                    // Send updated product data to the server (Assuming an API endpoint exists)
+                    fetch(`/updateProduct/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(product)
+                    })
+                    .then(response => response.json())
+                    .then(updatedProduct => {
+                        // Optionally, update the UI or give feedback to the user
+                        console.log('Product updated:', updatedProduct);
+                    })
+                    .catch(error => console.error('Error updating product:', error));
+                }
 
-              // Close the modal
-              $('#editProductModal').modal('hide');
-          });
-      })
-      .catch(error => console.error('Error loading products:', error));
+                // Close the modal
+                $('#editProductModal').modal('hide');
+            });
+
+            // Handle the add button click event
+            document.querySelector('.add-button').addEventListener('click', () => {
+                $('#addProductModal').modal('show');
+            });
+
+            // Handle the add product form submission
+            document.getElementById('addProductButton').addEventListener('click', () => {
+                const newName = document.getElementById('newProductName').value;
+                const newPrice = document.getElementById('newProductPrice').value;
+                const newImage = document.getElementById('newProductImage').value;
+
+                const newProduct = {
+                    id: products.length + 1, // Simplified ID generation
+                    name: newName,
+                    price: newPrice,
+                    image: newImage
+                };
+
+                // Add the new product to the products array
+                products.push(newProduct);
+
+                // Update the product list UI
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const img = document.createElement('img');
+                img.className = 'card-img-top';
+                img.src = newProduct.image;
+                img.alt = newProduct.name;
+                card.appendChild(img);
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                card.appendChild(cardBody);
+
+                const name = document.createElement('p');
+                name.className = 'card-text';
+                name.innerText = newProduct.name;
+                cardBody.appendChild(name);
+
+                const details = document.createElement('div');
+                details.className = 'details';
+                cardBody.appendChild(details);
+
+                const price = document.createElement('p');
+                price.className = 'price';
+                price.innerText = newProduct.price + ' F';
+                details.appendChild(price);
+
+                const viewIcon = document.createElement('img');
+                viewIcon.className = 'img-fluid';
+                viewIcon.src = 'image/voir.png';
+                viewIcon.alt = 'Voir';
+                viewIcon.style.cursor = 'pointer';
+                details.appendChild(viewIcon);
+
+                viewIcon.addEventListener('click', () => {
+                    document.getElementById('productName').value = newProduct.name;
+                    document.getElementById('productPrice').value = newProduct.price;
+                    document.getElementById('productId').value = newProduct.id;
+                    $('#editProductModal').modal('show');
+                });
+
+                productList.appendChild(card);
+
+                // Optionally send the new product data to the server
+                // fetch('/addProduct', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(newProduct)
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     console.log('Product added:', data);
+                // })
+                // .catch(error => console.error('Error adding product:', error));
+
+                // Close the modal
+                $('#addProductModal').modal('hide');
+            });
+        })
+        .catch(error => console.error('Error loading products:', error));
 });
