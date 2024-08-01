@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
+    border-radius: 20px;
 }
 
 h1,h2,h3 {
@@ -9,7 +10,7 @@ h1,h2,h3 {
 }
 
 .sidebar {
-    width: 210px;
+    width: 215px;
     height: 100vh;
     background-color: #0F8ACE;
     color: white;
@@ -47,6 +48,7 @@ h1,h2,h3 {
         color: black;
         border: 2px solid transparent; 
         left: 30px;
+        border-radius: 15%;
         
 }
 
@@ -100,7 +102,6 @@ h1,h2,h3 {
     table {
         width: 100%;
         margin-top: 20px;
-        border-radius: 10%;
     }
     th, td {
         text-align: center;
@@ -108,4 +109,27 @@ h1,h2,h3 {
     }
     th {
         background-color: #f4f4f4;
+        color: #00954A;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+        border-radius: 10px; 
+        overflow: hidden; 
+    }
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
+    .table-bordered thead th:first-child {
+        border-top-left-radius: 10px;
+    }
+    .table-bordered thead th:last-child {
+        border-top-right-radius: 10px; 
+    }
+    .table-bordered tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; 
+    }
+    .table-bordered tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; 
     }
