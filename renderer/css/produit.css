@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #0F8ACE;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.menu-item {
+    width: 100%;
+    padding: 10px;
+    text-align: left; /* Alignement du texte à gauche */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex; /* Utilisation de flexbox */
+    align-items: center; /* Centrer verticalement */
+}
+
+.menu-item:hover {
+    background-color: #0079A1;
+}
+
+.menu-icon {
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+    display: flex;
+    align-items: center;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.main-content {
+    margin-left: 200px;
+    padding: 20px;
+}
