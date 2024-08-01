@@ -1,0 +1,14 @@
+{
+  "name": "food_app",
+  "version": "1.0.0",
+  "description": "desktop food app with electron for esmt",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "the_spanish",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.3.1"
+  }
+}
