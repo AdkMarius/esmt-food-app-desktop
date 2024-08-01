@@ -133,3 +133,9 @@ h1,h2,h3 {
     .table-bordered tbody tr:last-child td:last-child {
         border-bottom-right-radius: 10px; 
     }
+
+    .card {
+        width: 12rem;
+        border-radius: 15px 15px 0 0; /* Arrondir les coins supérieurs gauche et droit */
+    }
+    
