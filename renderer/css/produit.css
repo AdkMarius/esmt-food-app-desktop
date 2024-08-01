@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Roboto Slab', serif;
     border-radius: 20px;
+    background-color: #f4f4f4;
 }
 
 h1,h2,h3 {
@@ -134,12 +135,7 @@ h1,h2,h3 {
         border-bottom-right-radius: 10px; 
     }
 
-    .card {
-        width: 12rem;
-        border-radius: 37px 37px 35px 35px; /* Arrondir les coins supérieurs gauche et droit */
-    }
     
-
     .add-button {
         position: absolute;
         top: 50px;
@@ -154,4 +150,20 @@ h1,h2,h3 {
         .card {
             width: 12rem;
             border-radius: 35px 35px 35px 35px; 
+            background-color: white;
+        }
+
+        .card-text {
+            font-size: 13px;
+        }
+
+
+        .card-img-top{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px; 
+            
+
+        }
+        .price{
+                  font-size: 12px;
         }
