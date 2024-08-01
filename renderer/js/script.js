@@ -111,7 +111,38 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
               productList.appendChild(card);
-              
+          });
+
+          // Handle the save button click event in the modal
+          document.getElementById('saveChangesButton').addEventListener('click', () => {
+              const id = document.getElementById('productId').value;
+              const updatedName = document.getElementById('productName').value;
+              const updatedPrice = document.getElementById('productPrice').value;
+
+              // Find the product and update its data
+              const product = products.find(p => p.id == id);
+              if (product) {
+                  product.name = updatedName;
+                  product.price = updatedPrice;
+                  
+                  // Send updated product data to the server (Assuming an API endpoint exists)
+                  fetch(`/updateProduct/${id}`, {
+                      method: 'PUT',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(product)
+                  })
+                  .then(response => response.json())
+                  .then(updatedProduct => {
+                      // Optionally, update the UI or give feedback to the user
+                      console.log('Product updated:', updatedProduct);
+                  })
+                  .catch(error => console.error('Error updating product:', error));
+              }
+
+              // Close the modal
+              $('#editProductModal').modal('hide');
           });
       })
       .catch(error => console.error('Error loading products:', error));
