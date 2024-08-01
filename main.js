@@ -43,7 +43,11 @@ app.whenReady().then( ()=>{
         }
     });
 });
-
+ipcMain.on('close-main-window', () => {
+    if (mainWindow) {
+      mainWindow.close();
+    }
+  });
 app.on('window-all-closed', ()=>{
     if (!isMac){
         app.quit();
