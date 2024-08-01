@@ -48,7 +48,7 @@ h1,h2,h3 {
         color: black;
         border: 2px solid transparent; 
         left: 30px;
-        border-radius: 15%;
+        border-radius: 50px;
         
 }
 
@@ -139,3 +139,19 @@ h1,h2,h3 {
         border-radius: 37px 37px 35px 35px; /* Arrondir les coins supérieurs gauche et droit */
     }
     
+
+    .add-button {
+        position: absolute;
+        top: 50px;
+        right: 25px;
+       border-radius: 50px;
+       background-color: #00954A;
+       color: white;
+       border: none;
+
+        cursor: pointer;}
+
+        .card {
+            width: 12rem;
+            border-radius: 15px 15px 0 0; 
+        }
