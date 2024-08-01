@@ -52,6 +52,35 @@
                 <!-- Products will be inserted here dynamically -->
             </div>
         </div>
+
+        <!-- Modal HTML Structure -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Modifier le Produit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="editProductForm">
+            <div class="form-group">
+              <label for="productName">Nom du produit</label>
+              <input type="text" class="form-control" id="productName" name="name">
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Prix</label>
+              <input type="number" class="form-control" id="productPrice" name="price">
+            </div>
+            <input type="hidden" id="productId" name="id">
+            <button type="button" class="btn btn-primary" id="saveProductChanges">Sauvegarder les modifications</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 // Fetch the products data
@@ -106,6 +135,17 @@
                             viewIcon.alt = 'Voir';
                             viewIcon.className = 'img-fluid';
                             viewIcon.style.maxWidth = '16px';
+                            viewIcon.style.cursor = 'pointer'; // Make cursor pointer on hover
+                            details.appendChild(viewIcon);
+    
+                            // Add click event to view icon
+                            viewIcon.addEventListener('click', () => {
+                                document.getElementById('productName').value = product.name;
+                                document.getElementById('productPrice').value = product.price;
+                                document.getElementById('productId').value = product.id;
+                                $('#editProductModal').modal('show');
+                            });
+
                             details.appendChild(viewIcon);
     
                             // Add the card to the column
@@ -119,5 +159,7 @@
             });
         </script>
     <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
