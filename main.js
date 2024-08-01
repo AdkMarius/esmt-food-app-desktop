@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require ('path');
 const isMac = process.platform === 'darwin';
 const isDev= process.env.NODE_ENV !== 'production';
