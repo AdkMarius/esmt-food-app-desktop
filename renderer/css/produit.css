@@ -96,3 +96,16 @@ h1,h2,h3 {
     width: 20px;
     height: 20px;
     cursor: pointer;}
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 10%;
+    }
+    th, td {
+        text-align: center;
+        padding: 8px;
+    }
+    th {
+        background-color: #f4f4f4;
+    }

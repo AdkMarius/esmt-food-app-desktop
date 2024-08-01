@@ -13,3 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
 
+  function loadOrders() {
+    fetch('orders.json')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('orders-table-body');
+            data.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.reference}</td>
+                    <td>${order.date}</td>
+                    <td>${order.price_total.toFixed(2)} €</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Erreur lors du chargement des données:', error));
+}
+
+
+document.addEventListener('DOMContentLoaded', loadOrders);
