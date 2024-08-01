@@ -4,34 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esmt food app</title>
-    <link rel="stylesheet" href="css/produit.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/produit.css">
 </head>
 <body>
+    <div class="close-button" onclick="closeForm()">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 2C8.2 2 2 8.2 2 16C2 23.8 8.2 30 16 30C23.8 30 30 23.8 30 16C30 8.2 23.8 2 16 2ZM21.4 23L16 17.6L10.6 23L9 21.4L14.4 16L9 10.6L10.6 9L16 14.4L21.4 9L23 10.6L17.6 16L23 21.4L21.4 23Z" fill="black"/>
+        </svg>
+      </div>
     <div class="sidebar">
         <ul class="menu">
-            <h1 class="pl-2">Esmt.sn</h1>
+            <h2 class="text-center">Esmt.sn</h2>
             <li class="menu-item">
-                <img src="image/commande.png" alt="" class="mr-2"> <!-- Remplacez par une icône ou une image -->
-                <a href="commande.html">Commandes</a>
+                <img src="image/commande.png" alt="" class="mr-2">
+                <a href="commandes.html">Commandes</a>
             </li>
             <li class="menu-item">
-                <img src="image/historique.png" alt="" class="mr-2"> <!-- Remplacez par une icône ou une image -->
-                <a href="historique.html">Historiques</a>
+                <img src="image/historique.png" alt="" class="mr-2">  
+                <a href="historique.html">Historique</a>
             </li>
             <li class="menu-item">
-                <img src="image/Group.png" alt="" class="mr-2"> <!-- Remplacez par une icône ou une image -->
+                <img src="image/Group.png" alt="" class="mr-2"> 
                 <a href="produits.html">Produits</a>
             </li>
-            <li class="menu-item">
-                <img src="image/dashboard.png" alt="" class="mr-2"> <!-- Remplacez par une icône ou une image -->
-                <a href="dashboard.html">Dashboard</a>
+            <li class="menu-item active">
+                <img src="image/dashboard.png" alt="" class="mr-2"> 
+                <a href="#" class="active">Dashboard</a>
             </li>
         </ul>
     </div>
     <div class="main-content">
         <h2 class="">Dashboard</h2>
     </div>
-<script></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
