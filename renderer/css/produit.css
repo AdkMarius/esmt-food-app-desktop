@@ -145,3 +145,8 @@ h1,h2,h3 {
        border: none;
 
         cursor: pointer;}
+
+        .card {
+            width: 12rem;
+            border-radius: 15px 15px 0 0; 
+        }
