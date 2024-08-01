@@ -8,7 +8,7 @@ function closeForm() {
         const loginForm = document.getElementById('login-form');
       
         loginForm.addEventListener('submit', function(event) {
-          event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+          event.preventDefault(); 
       
           const username = document.getElementById('username').value;
           const password = document.getElementById('password').value;
@@ -35,7 +35,7 @@ function closeForm() {
   
 
   function loadOrders() {
-    fetch('orders.json')
+    fetch('data/orders.json')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('orders-table-body');
@@ -44,7 +44,7 @@ function closeForm() {
                 row.innerHTML = `
                     <td>${order.reference}</td>
                     <td>${order.date}</td>
-                    <td>${order.price_total.toFixed(2)} €</td>
+                    <td>${order.price_total.toFixed(2)} F</td>
                 `;
                 tableBody.appendChild(row);
             });
