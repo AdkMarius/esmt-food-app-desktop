@@ -53,3 +53,66 @@ function closeForm() {
 
 
 document.addEventListener('DOMContentLoaded', loadOrders);
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Fetch the products data
+  fetch('data/produits.json')
+      .then(response => response.json())
+      .then(products => {
+          const productList = document.getElementById('product-list');
+          products.forEach(product => {
+              // Create card element
+              const card = document.createElement('div');
+              card.className = 'card';
+              card.style.width = '8rem';
+              card.style.height = '9rem';
+              card.style.margin = '10px'; 
+              
+              
+              if (product.image) {
+                  const img = document.createElement('img');
+                  img.className = 'card-img-top';
+                  img.src = product.image;
+                  img.alt = product.name;
+                  img.style.height = '66px'; 
+                  img.style.width= '126px';
+                  card.appendChild(img);
+              }
+
+              // Card body
+              const cardBody = document.createElement('div');
+              cardBody.className = 'card-body';
+              card.appendChild(cardBody);
+
+              // Product name
+              const name = document.createElement('p');
+              name.className = 'card-text';
+              name.innerText = product.name;
+              cardBody.appendChild(name);
+
+              // Price and action icon
+              const details = document.createElement('div');
+              details.className = 'd-flex justify-content-between align-items-center';
+              cardBody.appendChild(details);
+
+              const price = document.createElement('p');
+              price.className = 'mb-0 text-success price';
+              price.innerText = product.price + ' F';
+              details.appendChild(price);
+
+              const viewIcon = document.createElement('img');
+              viewIcon.src = 'image/voir.png';
+              viewIcon.alt = 'Voir';
+              viewIcon.className = 'img-fluid';
+              viewIcon.style.maxWidth = '16px';
+              details.appendChild(viewIcon);
+
+              
+              productList.appendChild(card);
+          });
+      })
+      .catch(error => console.error('Error loading products:', error));
+});
