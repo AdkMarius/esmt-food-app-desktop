@@ -7,11 +7,11 @@
     {
         "reference": "CMD002",
         "date": "2024-07-26",
-        "price_total": 200.50
+        "price_total": 250.00
     },
     {
         "reference": "CMD003",
         "date": "2024-07-27",
-        "price_total": 320.75
+        "price_total": 325
     }
 ]
