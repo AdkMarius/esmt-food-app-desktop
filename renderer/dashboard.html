@@ -36,9 +36,51 @@
             </li>
         </ul>
     </div>
-    <div class="main-content">
-        <h2 class="">Dashboard</h2>
+    <div class="col-md-10 main-content">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Commandes Totales</h6>
+                        <p class="card-text" id="total-orders">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Revenus Totaux</h6>
+                        <p class="card-text" id="total-revenue">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Clients Totaux</h6>
+                        <p class="card-text" id="total-customers">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <canvas id="ordersChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
     </div>
-    <script src="js/script.js"></script>
+</div>
+</div>
+
+<script src="path/to/jquery.min.js"></script>
+<script src="path/to/bootstrap.bundle.min.js"></script>
+
+ <script src="js/script.js"></script>
 </body>
 </html>

@@ -468,3 +468,76 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 });
 
+
+
+//*********************************************************Dashboard******************************* */
+document.addEventListener("DOMContentLoaded", async function() {
+    
+    fetchDashboardData();
+
+    
+    function fetchDashboardData() {
+        fetch('http://localhost:3000/dashboard-data')
+            .then(response => response.json())
+            .then(data => {
+                $('#total-orders').text(data.totalOrders);
+                $('#total-revenue').text(data.totalRevenue);
+                $('#total-customers').text(data.totalCustomers);
+
+                // Update charts
+                updateOrdersChart(data.ordersByMonth);
+                updateRevenueChart(data.revenueByMonth);
+            })
+            .catch(error => console.error('Error fetching dashboard data:', error));
+    }
+
+    // Function to update orders chart
+    function updateOrdersChart(ordersData) {
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ordersData.labels,
+                datasets: [{
+                    label: 'Commandes',
+                    data: ordersData.data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Function to update revenue chart
+    function updateRevenueChart(revenueData) {
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: revenueData.labels,
+                datasets: [{
+                    label: 'Revenus',
+                    data: revenueData.data,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+});
