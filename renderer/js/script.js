@@ -92,21 +92,21 @@ document.addEventListener("DOMContentLoaded", function() {
                   card.appendChild(img);
               }
 
-              // Card body
-              const cardBody = document.createElement('div');
-              cardBody.className = 'card-body';
-              card.appendChild(cardBody);
+                // Card body
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                card.appendChild(cardBody);
 
-              // Product name
-              const name = document.createElement('p');
-              name.className = 'card-text';
-              name.innerText = product.name;
-              cardBody.appendChild(name);
+                // Product name
+                const name = document.createElement('p');
+                name.className = 'card-text';
+                name.innerText = product.name;
+                cardBody.appendChild(name);
 
-              // Price and action icon
-              const details = document.createElement('div');
-              details.className = 'details';
-              cardBody.appendChild(details);
+                // Price and action icon
+                const details = document.createElement('div');
+                details.className = 'details';
+                cardBody.appendChild(details);
 
               const price = document.createElement('p');
               price.className = 'price';
@@ -152,8 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
           if (data.message === 'Product read successfully') {
               alert('Product updated successfully');
               $('#editProductModal').modal('hide');
-              // Reload the products or update the DOM accordingly
-              // For simplicity, reloading the page is an option
+             
               location.reload();
           } else {
               alert('Error updating product');
