@@ -191,10 +191,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('addProductButton').addEventListener('click', function() {
         const name = document.getElementById('newProductName').value;
         const price = document.getElementById('newProductPrice').value;
-        const image = document.getElementById('newProductImage').value;
 
         
-        if (name && price && image) {
+        if (name && price ) {
         
             fetch('http://localhost:3000/api/products/create', {
                 method: 'POST',
@@ -203,8 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 body: JSON.stringify({
                     name: name,
-                    price: price,
-                    image: image
+                    price: price   
                 })
             })
             .then(response => response.json())
