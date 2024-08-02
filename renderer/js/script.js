@@ -3,7 +3,9 @@ function closeForm() {
     ipcRenderer.send('close-main-window');
 }
 
-//Authentification
+//***********************************************AUTHENTIFICATION ************************************//
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const loginForm = document.getElementById('login-form');
 
@@ -38,8 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+
+
   
-//Historique
+//**********************************************HISTORIQUE************************************************/
+
+
 async function loadOrders() {
   try {
       const response = await fetch('http://localhost:3000/api/orders/list');
@@ -71,7 +77,14 @@ async function loadOrders() {
 document.addEventListener('DOMContentLoaded', loadOrders);
 
 
-//Produits liste, ajout et mise à jour
+
+
+
+
+
+
+
+//*********************************************PRODUITS***********************************************//
 
 document.addEventListener("DOMContentLoaded", function() {
   // Fetch the products data
@@ -163,7 +176,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-//Commandes 
+
+
+
+
+
+
+
+
+//*********************************COMMANDES*********************************//
 
 
  // Fonction pour afficher les détails d'une commande
@@ -277,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-//Affichage catégories
+//*****************************************CATEGORIES************************************************/
 
 document.addEventListener("DOMContentLoaded", async function() {
     const apiUrl = 'http://localhost:3000/api/categories';
@@ -304,7 +325,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             
             const img = document.createElement('img');
             img.className = 'cat-img clickable';
-            img.src = category.image || 'default_image_path.jpg'; // Placeholder if no image
+            img.src = category.image || 'default_image_path.jpg'; 
             img.alt = category.name;
             img.dataset.categoryId = category.id;
 
@@ -407,6 +428,3 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 });
 
-function closeForm() {
-    ipcRenderer.send('close-main-window');
-}
