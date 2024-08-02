@@ -213,6 +213,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (data.success) {
                     
                     addProductModal.hide();
+                    location.reload();
+
                     
                 } else {
                     alert('Failed to add product');
@@ -254,7 +256,7 @@ async function showOrderDetails(orderId) {
     });
 
     const newOrdersTab = document.getElementById('new-orders');
-    const isOngoingOrder = !newOrdersTab.classList.contains('active'); // True if in ongoing orders tab
+    const isOngoingOrder = !newOrdersTab.classList.contains('active'); 
 
     orderDetails.innerHTML = `
         <h4>Commande ${order.id}</h4>
