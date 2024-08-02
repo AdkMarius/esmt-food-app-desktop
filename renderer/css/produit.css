@@ -240,8 +240,19 @@ h1,h2,h3 {
             align-items: center;
             padding: 3px;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
+            background-color: white;
+            width: 14rem;
+            height: 4rem;
+            left: 300px;
+            position: relative;
             
+        }
+
+        .order-card button {
+            background-color: #0F8ACE;
+            color: white;
+            border-radius: 50px;
         }
         
         .order-details {
@@ -250,6 +261,7 @@ h1,h2,h3 {
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-top: 20px;
+            left: 450px
         }
         
         .order-item {

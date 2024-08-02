@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const orderCard = document.createElement('div');
             orderCard.classList.add('order-card');
             orderCard.innerHTML = `
-                <span>Commande ${order.id}</span>
-                <button class="btn-sm" onclick="showOrderDetails(${order.id})">Voir</button>
+                <p>Commande ${order.id}</p>
+                <button class="btn btn-sm" onclick="showOrderDetails(${order.id})">Voir</button>
             `;
             ordersList.appendChild(orderCard);
         });
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
         const order = data.data[0];
         orderDetails.innerHTML = `
-            <h2>Commande ${order.id}</h2>
+            <h4>Commande ${order.id}</h4>
             <div class="order-item">
                 <img src="${order.order_items[0].products.image_url}" alt="${order.order_items[0].products.name}" width="50">
                 <span>${order.order_items[0].products.name}</span>
@@ -210,8 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>${order.order_items[1].products.name}</span>
                 <span>${order.order_items[1].price} f</span>
             </div>
-            <button onclick="updateOrderStatus(${order.id}, 'in progress')">En cours</button>
-            <button onclick="updateOrderStatus(${order.id}, 'ready')">Prête</button>
+            <button onclick="updateOrderStatus(${order.id}, 'delivering')">En cours</button>
+            <button onclick="updateOrderStatus(${order.id}, 'delivered')">Prête</button>
         `;
         orderDetails.style.display = 'block';
     }
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ongoingOrdersTab.addEventListener('click', () => {
         ongoingOrdersTab.classList.add('active');
         newOrdersTab.classList.remove('active');
-        displayOrders('in progress');
+        displayOrders('delivering');
     });
 
     
