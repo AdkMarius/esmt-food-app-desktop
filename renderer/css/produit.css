@@ -196,3 +196,62 @@ h1,h2,h3 {
             height: 16px;
 
         };
+
+
+        .main-content-c {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .order-tabs {
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .order-tabs button {
+            
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            background-color: white;
+            transition: background-color 0.3s;
+            color: #00954A;
+            border-color: #00954A;
+        }
+        
+        .order-tabs button.active,
+        .order-tabs button:hover {
+            background-color: #e5e8e7;
+        }
+        
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .order-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            width: 8rem;
+            height: 3rem;
+        }
+        
+        .order-details {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
