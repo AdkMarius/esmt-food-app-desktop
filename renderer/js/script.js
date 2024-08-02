@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('addProductButton').addEventListener('click', function() {
         const name = document.getElementById('newProductName').value;
         const price = document.getElementById('newProductPrice').value;
-
+        const id_category= document.getElementById('category').value;
         
         if (name && price ) {
         
@@ -202,7 +202,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 body: JSON.stringify({
                     name: name,
-                    price: price   
+                    price: price, 
+                    id_category: id_category
                 })
             })
             .then(response => response.json())

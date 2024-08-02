@@ -65,7 +65,17 @@
                         <label for="newProductPrice">Prix</label>
                         <input type="number" class="form-control" id="newProductPrice" name="price" required>
                     </div>
-                    
+                     <div class="form-group">
+                        <label for="productCategory">Catégorie</label>
+                                 <select  class="form-control" id="category" name="category">
+                                    <option selected >Sélectionnez une catégorie</option>
+                                 <option value="2">Boissons</option>
+                                   <option value="4">Snack</option>
+                                  <option value="3">Fast-food</option>
+                                  <option value="1">Plat</option>
+                                 </select>
+
+                     </div>
                     <button type="button" class="btn btn-primary" id="addProductButton">Ajouter le produit</button>
                 </form>
             </div>
