@@ -165,9 +165,69 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Commandes 
 
+
+ // Fonction pour afficher les détails d'une commande
+async function showOrderDetails(orderId) {
+    const response = await fetch(`http://localhost:3000/api/orders/details/${orderId}`);
+    const data = await response.json();
+    const order = data.data[0];
+    const orderDetails = document.getElementById('order-details');
+    const modal = document.getElementById('order-modal');
+
+    
+    let itemsHtml = '';
+    order.order_items.forEach(item => {
+        itemsHtml += `
+            <div class="order-item">
+                <img src="${item.products.image}"  width="50">
+                <span>${item.products.name}</span>
+                <span>${item.products.price} f</span>
+            </div>
+        `;
+    });
+
+    
+    orderDetails.innerHTML = `
+        <h4>Commande ${order.id}</h4>
+        ${itemsHtml}
+        <button onclick="updateOrderStatus(${order.id}, 'Delivering')">En cours</button>
+        <button onclick="updateOrderStatus(${order.id}, 'Delivered')">Prête</button>
+    `;
+    
+    
+    modal.style.display = 'block';
+
+    
+    const closeModal = () => {
+        modal.style.display = 'none';
+    };
+
+    
+    document.querySelector('.close').addEventListener('click', closeModal);
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+}
+
+
+// Fonction pour mettre à jour le statut d'une commande
+async function updateOrderStatus(orderId, status) {
+    const response = await fetch(`http://localhost:3000/api/orders/${orderId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status })
+    });
+    const data = await response.json();
+    console.log(data.message);
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const ordersList = document.getElementById('orders-list');
-    const orderDetails = document.getElementById('order-details');
     const newOrdersTab = document.getElementById('new-orders');
     const ongoingOrdersTab = document.getElementById('ongoing-orders');
 
@@ -187,47 +247,16 @@ document.addEventListener('DOMContentLoaded', () => {
             orderCard.classList.add('order-card');
             orderCard.innerHTML = `
                 <p>Commande ${order.id}</p>
-                <button class="btn btn-sm" onclick="showOrderDetails(${order.id})">Voir</button>
+                <button class="btn btn-sm voir-btn" onclick="showOrderDetails(${order.id})" >Voir</button>
             `;
             ordersList.appendChild(orderCard);
         });
     }
 
-    // Fonction pour afficher les détails d'une commande
-    async function showOrderDetails(orderId) {
-        const response = await fetch(`http://localhost:3000/api/orders/details/${orderId}`);
-        const data = await response.json();
-        const order = data.data[0];
-        orderDetails.innerHTML = `
-            <h4>Commande ${order.id}</h4>
-            <div class="order-item">
-                <img src="${order.order_items[0].products.image_url}" alt="${order.order_items[0].products.name}" width="50">
-                <span>${order.order_items[0].products.name}</span>
-                <span>${order.order_items[0].price} f</span>
-            </div>
-            <div class="order-item">
-                <img src="${order.order_items[1].products.image_url}" alt="${order.order_items[1].products.name}" width="50">
-                <span>${order.order_items[1].products.name}</span>
-                <span>${order.order_items[1].price} f</span>
-            </div>
-            <button onclick="updateOrderStatus(${order.id}, 'delivering')">En cours</button>
-            <button onclick="updateOrderStatus(${order.id}, 'delivered')">Prête</button>
-        `;
-        orderDetails.style.display = 'block';
-    }
+    
+ 
 
-    // Fonction pour mettre à jour le statut d'une commande
-    async function updateOrderStatus(orderId, status) {
-        const response = await fetch(`http://localhost:3000/api/orders/${orderId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ status })
-        });
-        const data = await response.json();
-        console.log(data.message);
-    }
+    
 
     // Gestion des onglets
     newOrdersTab.addEventListener('click', () => {
@@ -239,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ongoingOrdersTab.addEventListener('click', () => {
         ongoingOrdersTab.classList.add('active');
         newOrdersTab.classList.remove('active');
-        displayOrders('delivering');
+        displayOrders('Delivering');
     });
 
     

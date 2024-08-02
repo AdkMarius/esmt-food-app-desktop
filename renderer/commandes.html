@@ -42,16 +42,22 @@
         </ul>
     </div>
     
-        <div class="main-content-c">
-           
-            <div class="orders-list" id="orders-list">
+        <div class="main-content container">
+
+            <div class="orders-list d-flex flex-wrap" id="orders-list">
                 <!--commandes-->
             </div>
-            <div class="order-details" id="order-details">
-                <!-- détails commande  -->
+            
+            <div id="order-modal" class="modal">
+               <div class="modal-content">
+                    <span class="close">&times;</span>
+                  <div id="order-details"></div>
+                </div>
             </div>
+
         </div>
     
     <script src="js/script.js"></script>
+   
 </body>
 </html>
