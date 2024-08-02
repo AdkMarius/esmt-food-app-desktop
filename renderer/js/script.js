@@ -87,23 +87,23 @@ document.addEventListener('DOMContentLoaded', loadOrders);
 //*********************************************PRODUITS***********************************************//
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Fetch the products data
-  fetch('http://localhost:3000/api/products/list')
-      .then(response => response.json())
-      .then(products => {
-          const productList = document.getElementById('product-list');
-          products.data.forEach(product => {
-              // Create card element
-              const card = document.createElement('div');
-              card.className = 'card';
+    // Fetch the products data
+    fetch('http://localhost:3000/api/products/list')
+        .then(response => response.json())
+        .then(products => {
+            const productList = document.getElementById('product-list');
+            products.data.forEach(product => {
+                // Create card element
+                const card = document.createElement('div');
+                card.className = 'card';
 
-              if (product.image) {
-                  const img = document.createElement('img');
-                  img.className = 'card-img-top';
-                  img.src = product.image;
-                  img.alt = product.name;
-                  card.appendChild(img);
-              }
+                if (product.image) {
+                    const img = document.createElement('img');
+                    img.className = 'card-img-top';
+                    img.src = product.image;
+                    img.alt = product.name;
+                    card.appendChild(img);
+                }
 
                 // Card body
                 const cardBody = document.createElement('div');
@@ -121,58 +121,59 @@ document.addEventListener("DOMContentLoaded", function() {
                 details.className = 'details';
                 cardBody.appendChild(details);
 
-              const price = document.createElement('p');
-              price.className = 'price';
-              price.innerText = product.price + ' F';
-              details.appendChild(price);
+                const price = document.createElement('p');
+                price.className = 'price';
+                price.innerText = product.price + ' F';
+                details.appendChild(price);
 
-              const viewIcon = document.createElement('img');
-              viewIcon.className = 'img-fluid';
-              viewIcon.src = 'image/voir.png';
-              viewIcon.alt = 'Voir';
-              viewIcon.style.cursor = 'pointer';
-              details.appendChild(viewIcon);
+                const viewIcon = document.createElement('img');
+                viewIcon.className = 'img-fluid';
+                viewIcon.src = 'image/voir.png';
+                viewIcon.alt = 'Voir';
+                viewIcon.style.cursor = 'pointer';
+                details.appendChild(viewIcon);
 
-              viewIcon.addEventListener('click', () => {
-                  document.getElementById('productName').value = product.name;
-                  document.getElementById('productPrice').value = product.price;
-                  document.getElementById('productId').value = product.id;
-                  $('#editProductModal').modal('show');
-              });
+                viewIcon.addEventListener('click', () => {
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productId').value = product.id;
+                    document.getElementById('productIsDayMenu').checked = product.isDayMenu;
+                    $('#editProductModal').modal('show');
+                });
 
-              productList.appendChild(card);
-          });
-      })
-      .catch(error => console.error('Error loading products:', error));
+                productList.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error loading products:', error));
 
-  // Save changes event
-  document.getElementById('saveProductChanges').addEventListener('click', () => {
-      const productId = document.getElementById('productId').value;
-      const updatedProduct = {
-          name: document.getElementById('productName').value,
-          price: document.getElementById('productPrice').value
-      };
+    // Save changes event
+    document.getElementById('saveProductChanges').addEventListener('click', () => {
+        const productId = document.getElementById('productId').value;
+        const updatedProduct = {
+            name: document.getElementById('productName').value,
+            price: document.getElementById('productPrice').value,
+            isDayMenu: document.getElementById('productIsDayMenu').checked
+        };
 
-      fetch(`http://localhost:3000/api/products/${productId}`, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(updatedProduct)
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.message === 'Product read successfully') {
-              alert('Product updated successfully');
-              $('#editProductModal').modal('hide');
-             
-              location.reload();
-          } else {
-              alert('Error updating product');
-          }
-      })
-      .catch(error => console.error('Error updating product:', error));
-  });
+        fetch(`http://localhost:3000/api/products/${productId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedProduct)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Product updated successfully');
+                $('#editProductModal').modal('hide');
+                location.reload();
+            } else {
+                alert('Error updating product');
+            }
+        })
+        .catch(error => console.error('Error updating product:', error));
+    });
 });
 
 
