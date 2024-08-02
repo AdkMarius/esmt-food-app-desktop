@@ -245,3 +245,57 @@ document.addEventListener('DOMContentLoaded', () => {
     
     displayOrders('New');
 });
+
+document.addEventListener("DOMContentLoaded", async function() {
+    // URL de l'API
+    const apiUrl = 'http://localhost:3000/api/categories';
+
+    try {
+        // Récupérer les catégories depuis l'API
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to fetch categories');
+        }
+
+        // Sélectionner l'élément contenant les cartes
+        const cardGroup = document.getElementById('category-cards');
+
+        // Créer une carte pour chaque catégorie
+        result.data.forEach(category => {
+            const card = document.createElement('div');
+            card.className = 'card clickable-card'; // Ajouter une classe pour rendre la carte cliquable
+
+            if (category.image) {
+                const img = document.createElement('img');
+                img.className = 'card-img-top';
+                img.src = category.image;
+                img.alt = category.name;
+                card.appendChild(img);
+            }
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            const title = document.createElement('h6');
+            title.className = 'card-title';
+            title.innerText = category.name;
+            cardBody.appendChild(title);
+
+            card.appendChild(cardBody);
+            cardGroup.appendChild(card);
+
+            // Ajouter un événement click à la carte
+            card.addEventListener('click', () => {
+               
+            });
+        });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des catégories:', error);
+    }
+});
+
+function closeForm() {
+    ipcRenderer.send('close-main-window');
+}

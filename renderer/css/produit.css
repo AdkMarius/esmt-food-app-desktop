@@ -269,3 +269,13 @@ h1,h2,h3 {
             justify-content: space-between;
             margin-bottom: 10px;
         }
+
+        .clickable-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .clickable-card:hover {
+            transform: scale(1.05);
+        }
+        
