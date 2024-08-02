@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Plats",
+        "image":""
+    },
+    {
+        "id": 2,
+        "name": "Boissons",
+        "image":""
+    },
+    {
+        "id": 3,
+        "name": "Fast Food",
+        "image":""
+    },
+    {
+        "id": 4,
+        "name": "Snacks",
+        "image":""
+    }
+]
