@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const password = document.getElementById('password').value;
 
       try {
-          const response = await fetch('http://localhost:3000/auth/sign-in', {
+          const response = await fetch('http://localhost:3000/api/auth/sign-in', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', loadOrders);
 
 document.addEventListener("DOMContentLoaded", function() {
   // Fetch the products data
-  fetch('/api/products/list')
+  fetch('http://localhost:3000/api/products/list')
       .then(response => response.json())
       .then(products => {
           const productList = document.getElementById('product-list');
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
           price: document.getElementById('productPrice').value
       };
 
-      fetch(`/api/products/${productId}`, {
+      fetch(`http://localhost:3000/api/products/${productId}`, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json'
