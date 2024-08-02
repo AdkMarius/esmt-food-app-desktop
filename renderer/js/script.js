@@ -290,6 +290,7 @@ async function updateOrderStatus(orderId, status) {
     });
     const data = await response.json();
     console.log(data.message);
+    location.reload();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
