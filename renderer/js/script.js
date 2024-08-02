@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const price = document.getElementById('newProductPrice').value;
         const id_category= document.getElementById('category').value;
         
-        if (name && price ) {
+        if (name && price && id_category ) {
         
             fetch('http://localhost:3000/api/products/create', {
                 method: 'POST',
@@ -203,7 +203,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify({
                     name: name,
                     price: price, 
-                    id_category: id_category
+                    isAvailable: "TRUE",
+                    isDayMenu: "FALSE",
+                    id_category: id_category,
                 })
             })
             .then(response => response.json())
