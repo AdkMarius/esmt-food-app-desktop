@@ -204,25 +204,28 @@ h1,h2,h3 {
         }
         
         .order-tabs {
+            position: relative;
             display: flex;
             margin-top: 20px;
             margin-bottom: 20px;
+            left: 350px;
         }
         
         .order-tabs button {
-            
+            margin: 30px;
             padding: 10px 20px;
-            border-radius: 15px;
+            border-radius: 20px;
             cursor: pointer;
-            background-color: white;
+            border:none;
+            background-color: #e5e8e7;
             transition: background-color 0.3s;
             color: #00954A;
-            border-color: #00954A;
         }
         
         .order-tabs button.active,
         .order-tabs button:hover {
-            background-color: #e5e8e7;
+            background-color: white;
+
         }
         
         .orders-list {
@@ -235,11 +238,10 @@ h1,h2,h3 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 3px;
             border: none;
-            border-radius: 10px;
-            width: 8rem;
-            height: 3rem;
+            border-radius: 5px;
+            
         }
         
         .order-details {

@@ -184,10 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const orders = await fetchOrders(status);
         orders.forEach(order => {
             const orderCard = document.createElement('div');
-            orderCard.classList.add(' card order-card');
+            orderCard.classList.add('order-card');
             orderCard.innerHTML = `
                 <span>Commande ${order.id}</span>
-                <button class=" btn btn-primary btn-sm" onclick="showOrderDetails(${order.id})">Voir</button>
+                <button class="btn-sm" onclick="showOrderDetails(${order.id})">Voir</button>
             `;
             ordersList.appendChild(orderCard);
         });
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     newOrdersTab.addEventListener('click', () => {
         newOrdersTab.classList.add('active');
         ongoingOrdersTab.classList.remove('active');
-        displayOrders('new');
+        displayOrders('New');
     });
 
     ongoingOrdersTab.addEventListener('click', () => {
