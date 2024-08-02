@@ -242,35 +242,33 @@ async function showOrderDetails(orderId) {
     const orderDetails = document.getElementById('order-details');
     const modal = document.getElementById('order-modal');
 
-    
     let itemsHtml = '';
     order.order_items.forEach(item => {
         itemsHtml += `
             <div class="order-item">
-                <img src="${item.products.image}"  width="50">
+                <img src="${item.products.image}" width="50">
                 <span>${item.products.name}</span>
                 <span>${item.products.price} f</span>
             </div>
         `;
     });
 
-    
+    const newOrdersTab = document.getElementById('new-orders');
+    const isOngoingOrder = !newOrdersTab.classList.contains('active'); // True if in ongoing orders tab
+
     orderDetails.innerHTML = `
         <h4>Commande ${order.id}</h4>
         ${itemsHtml}
-        <button onclick="updateOrderStatus(${order.id}, 'Delivering')">En cours</button>
-        <button id="pretBtn" onclick="updateOrderStatus(${order.id}, 'Delivered')">Prête</button>
+        <button id="deliverBtn" onclick="updateOrderStatus(${order.id}, 'Delivering')" style="${isOngoingOrder ? 'display:none;' : ''}">En cours</button>
+        <button id="readyBtn" onclick="updateOrderStatus(${order.id}, 'Delivered')" style="${isOngoingOrder ? '' : 'display:none;'}">Prête</button>
     `;
-    
-    
+
     modal.style.display = 'block';
 
-    
     const closeModal = () => {
         modal.style.display = 'none';
     };
 
-    
     document.querySelector('.close').addEventListener('click', closeModal);
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
@@ -278,7 +276,6 @@ async function showOrderDetails(orderId) {
         }
     });
 }
-
 
 // Fonction pour mettre à jour le statut d'une commande
 async function updateOrderStatus(orderId, status) {
@@ -293,13 +290,11 @@ async function updateOrderStatus(orderId, status) {
     console.log(data.message);
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const ordersList = document.getElementById('orders-list');
     const newOrdersTab = document.getElementById('new-orders');
     const ongoingOrdersTab = document.getElementById('ongoing-orders');
 
-    
     async function fetchOrders(status) {
         const response = await fetch(`http://localhost:3000/api/orders?status=${status}`);
         const data = await response.json();
@@ -315,16 +310,11 @@ document.addEventListener('DOMContentLoaded', () => {
             orderCard.classList.add('order-card');
             orderCard.innerHTML = `
                 <p>Commande ${order.id}</p>
-                <button class="btn btn-sm voir-btn" onclick="showOrderDetails(${order.id})" >Voir</button>
+                <button class="btn btn-sm voir-btn" onclick="showOrderDetails(${order.id})">Voir</button>
             `;
             ordersList.appendChild(orderCard);
         });
     }
-
-    
- 
-
-    
 
     // Gestion des onglets
     newOrdersTab.addEventListener('click', () => {
@@ -339,7 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayOrders('Delivering');
     });
 
-    
     displayOrders('New');
 });
 
