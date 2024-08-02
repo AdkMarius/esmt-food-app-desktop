@@ -275,51 +275,133 @@ document.addEventListener('DOMContentLoaded', () => {
     displayOrders('New');
 });
 
+
+
+//Affichage catégories
+
 document.addEventListener("DOMContentLoaded", async function() {
-    // URL de l'API
     const apiUrl = 'http://localhost:3000/api/categories';
+    const productsUrl = 'http://localhost:3000/api/products/list';
 
     try {
-        // Récupérer les catégories depuis l'API
-        const response = await fetch(apiUrl);
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result.message || 'Failed to fetch categories');
+        // Fetch categories
+        const categoryResponse = await fetch(apiUrl);
+        const categoryResult = await categoryResponse.json();
+        
+        if (!categoryResponse.ok) {
+            throw new Error(categoryResult.message || 'Failed to fetch categories');
         }
 
-        // Sélectionner l'élément contenant les cartes
         const cardGroup = document.getElementById('category-cards');
+        cardGroup.innerHTML = '';
 
-        // Créer une carte pour chaque catégorie
-        result.data.forEach(category => {
-            const card = document.createElement('div');
-            card.className = 'card clickable-card'; // Ajouter une classe pour rendre la carte cliquable
+        const categoriesRow = document.createElement('div');
+        categoriesRow.className = 'row carte ml-3';
 
-            if (category.image) {
-                const img = document.createElement('img');
-                img.className = 'card-img-top';
-                img.src = category.image;
-                img.alt = category.name;
-                card.appendChild(img);
-            }
-
-            const cardBody = document.createElement('div');
-            cardBody.className = 'card-body';
+        categoryResult.data.forEach(category => {
+            const col = document.createElement('div');
+            col.className = 'col-3 text-center';
+            
+            const img = document.createElement('img');
+            img.className = 'cat-img clickable';
+            img.src = category.image || 'default_image_path.jpg'; // Placeholder if no image
+            img.alt = category.name;
+            img.dataset.categoryId = category.id;
 
             const title = document.createElement('h6');
-            title.className = 'card-title';
+            title.className = 'cat-title';
             title.innerText = category.name;
-            cardBody.appendChild(title);
 
-            card.appendChild(cardBody);
-            cardGroup.appendChild(card);
+            col.appendChild(img);
+            col.appendChild(title);
+            categoriesRow.appendChild(col);
+        });
 
-            // Ajouter un événement click à la carte
-            card.addEventListener('click', () => {
-               
+        cardGroup.appendChild(categoriesRow);
+
+        // Fetch products
+        const productResponse = await fetch(productsUrl);
+        const productResult = await productResponse.json();
+
+        if (!productResponse.ok) {
+            throw new Error(productResult.message || 'Failed to fetch products');
+        }
+
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+
+        // Function to display products
+        function displayProducts(products) {
+            productList.innerHTML = '';
+            products.forEach(product => {
+                // Create card element
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                if (product.image) {
+                    const img = document.createElement('img');
+                    img.className = 'card-img-top';
+                    img.src = product.image;
+                    img.alt = product.name;
+                    card.appendChild(img);
+                }
+
+                // Card body
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                card.appendChild(cardBody);
+
+                // Product name
+                const name = document.createElement('p');
+                name.className = 'card-text';
+                name.innerText = product.name;
+                cardBody.appendChild(name);
+
+                // Price and action icon
+                const details = document.createElement('div');
+                details.className = 'details';
+                cardBody.appendChild(details);
+
+                const price = document.createElement('p');
+                price.className = 'price';
+                price.innerText = product.price + ' F';
+                details.appendChild(price);
+
+                const viewIcon = document.createElement('img');
+                viewIcon.className = 'img-fluid';
+                viewIcon.src = 'image/voir.png';
+                viewIcon.alt = 'Voir';
+                viewIcon.style.cursor = 'pointer';
+                details.appendChild(viewIcon);
+
+                viewIcon.addEventListener('click', () => {
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productId').value = product.id;
+                    $('#editProductModal').modal('show');
+                });
+
+                productList.appendChild(card);
+            });
+        }
+
+        
+        displayProducts(productResult.data);
+
+    
+        document.querySelectorAll('.clickable').forEach(element => {
+            element.addEventListener('click', () => {
+                const categoryId = element.dataset.categoryId;
+                const filteredProducts = productResult.data.filter(product => product.id_category === parseInt(categoryId));
+                displayProducts(filteredProducts);
             });
         });
+
+        
+        document.getElementById('show-all-products').addEventListener('click', () => {
+            displayProducts(productResult.data);
+        });
+
     } catch (error) {
         console.error('Erreur lors de la récupération des catégories:', error);
     }
