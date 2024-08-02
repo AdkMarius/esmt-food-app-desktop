@@ -269,6 +269,25 @@ h1,h2,h3 {
 
         }
 
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+        }
+        
+        .close:hover{
+            color: #0F8ACE;
+            cursor: pointer;
+        }
+
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
         .modal button {
             background-color: #00954A;
             border: none;
