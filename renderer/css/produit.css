@@ -139,6 +139,13 @@ h1,h2,h3 {
         border-bottom-right-radius: 10px; 
     }
 
+
+    .add-button:hover {
+        background-color: #013d1f;
+        color: white;
+        cursor: pointer;
+
+    }
     
     .add-button {
         position: absolute;
@@ -150,6 +157,8 @@ h1,h2,h3 {
        border: none;
 
         cursor: pointer;}
+
+        
 
         
         .card-text {
@@ -296,7 +305,7 @@ h1,h2,h3 {
 
         }
 
-        .modal button:last-child{
+        .pretBtn{
             position: absolute; 
             bottom: 20px; 
             right: 10px; 

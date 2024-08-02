@@ -177,6 +177,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+//Ajout de produit
+
+document.addEventListener("DOMContentLoaded", function() {
+    const addButton = document.getElementById('addButton');
+    const addProductModal = new bootstrap.Modal(document.getElementById('addProductModal'));
+
+    addButton.addEventListener('click', function() {
+        addProductModal.show();
+    });
+
+    
+    document.getElementById('addProductButton').addEventListener('click', function() {
+        const name = document.getElementById('newProductName').value;
+        const price = document.getElementById('newProductPrice').value;
+        const image = document.getElementById('newProductImage').value;
+
+        
+        if (name && price && image) {
+        
+            fetch('http://localhost:3000/api/products/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    price: price,
+                    image: image
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    
+                    addProductModal.hide();
+                    
+                } else {
+                    alert('Failed to add product');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        } else {
+            alert('Please fill out all fields');
+        }
+    });
+});
 
 
 
@@ -184,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-//*********************************COMMANDES*********************************//
+//*********************************COMMANDES*******************************************//
 
 
  // Fonction pour afficher les détails d'une commande
@@ -212,7 +258,7 @@ async function showOrderDetails(orderId) {
         <h4>Commande ${order.id}</h4>
         ${itemsHtml}
         <button onclick="updateOrderStatus(${order.id}, 'Delivering')">En cours</button>
-        <button onclick="updateOrderStatus(${order.id}, 'Delivered')">Prête</button>
+        <button id="pretBtn" onclick="updateOrderStatus(${order.id}, 'Delivered')">Prête</button>
     `;
     
     
