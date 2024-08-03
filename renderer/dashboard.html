@@ -66,21 +66,26 @@
                 </div>
             </div>
         </div>
+        <div class="widget">
+            <canvas id="revenues"></canvas>
+        </div>
         <div class="row mt-4">
+            
             <div class="col-md-6">
-                <canvas id="ordersChart"></canvas>
-            </div>
-            <div class="col-md-6">
-                <canvas id="revenueChart"></canvas>
+                <canvas id="orderChart"></canvas>
             </div>
         </div>
     </div>
 </div>
 </div>
+<script>
+    function closeForm() {
+    ipcRenderer.send('close-main-window');
+}
 
-<script src="path/to/jquery.min.js"></script>
-<script src="path/to/bootstrap.bundle.min.js"></script>
+</script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
  <script src="js/script.js"></script>
 </body>
 </html>

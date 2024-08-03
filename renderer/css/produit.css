@@ -349,3 +349,29 @@ h1,h2,h3 {
             background-color: white;
             left: 100px;
         }
+
+        :root {
+            --background: #1A1C1E;
+            --background-widget: #FFFFFF;
+            --primary: #0F8ACE;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        
+        .widget {
+            border-radius: 32px;
+            background-color: var(--background-widget);
+            padding: 16px;
+            max-width: 600px;
+            width: 100%;
+            min-width: 300px;
+        }
+        
+        .widget canvas {
+            min-height: 280px;
+        }

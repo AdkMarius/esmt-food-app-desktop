@@ -471,73 +471,89 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
 //*********************************************************Dashboard******************************* */
-document.addEventListener("DOMContentLoaded", async function() {
-    
-    fetchDashboardData();
+const ctx = document.getElementById("revenues");
 
-    
-    function fetchDashboardData() {
-        fetch('http://localhost:3000/dashboard-data')
-            .then(response => response.json())
-            .then(data => {
-                $('#total-orders').text(data.totalOrders);
-                $('#total-revenue').text(data.totalRevenue);
-                $('#total-customers').text(data.totalCustomers);
+Chart.defaults.color = "#FFF";
+Chart.defaults.font.family = "Open Sans";
 
-                // Update charts
-                updateOrdersChart(data.ordersByMonth);
-                updateRevenueChart(data.revenueByMonth);
-            })
-            .catch(error => console.error('Error fetching dashboard data:', error));
-    }
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aou",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
+      {
+        label: "Revenus",
+        data: [
+          5, 1.8, 1.3, 1.2, 1.5, 2.8, 3.5, 4, 4.5, 5, 5.5, 6,
+        ],
+        backgroundColor: "#F4BD50",
+        borderRadius: 6,
+        borderSkipped: false,
+      },
+    ],
+  },
+  // continuation
 
-    // Function to update orders chart
-    function updateOrdersChart(ordersData) {
-        const ctx = document.getElementById('ordersChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ordersData.labels,
-                datasets: [{
-                    label: 'Commandes',
-                    data: ordersData.data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-
-    // Function to update revenue chart
-    function updateRevenueChart(revenueData) {
-        const ctx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: revenueData.labels,
-                datasets: [{
-                    label: 'Revenus',
-                    data: revenueData.data,
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Revenu de votre compagnie en 2024",
+        padding: {
+          bottom: 16,
+        },
+        font: {
+          size: 16,
+          weight: "normal",
+        },
+      },
+      tooltip: {
+        backgroundColor: "#FFFFFF",
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [2, 4],
+        },
+        grid: {
+          color: "#27292D",
+        },
+        title: {
+          text: "2023",
+        },
+      },
+      y: {
+        grid: {
+          color: "#27292D",
+        },
+        border: {
+          dash: [2, 4],
+        },
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Revenue (million [f])",
+        },
+      },
+    },
+  },
 });
