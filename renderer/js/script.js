@@ -291,6 +291,7 @@ async function updateOrderStatus(orderId, status) {
     });
     const data = await response.json();
     console.log(data.message);
+    location.reload();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -465,5 +466,95 @@ document.addEventListener("DOMContentLoaded", async function() {
     } catch (error) {
         console.error('Erreur lors de la récupération des catégories:', error);
     }
+});
+
+
+
+//*********************************************************Dashboard******************************* */
+const ctx = document.getElementById("revenues");
+
+Chart.defaults.color = "#FFF";
+Chart.defaults.font.family = "Open Sans";
+
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aou",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
+      {
+        label: "Revenus",
+        data: [
+          5, 1.8, 1.3, 1.2, 1.5, 2.8, 3.5, 4, 4.5, 5, 5.5, 6,
+        ],
+        backgroundColor: "#F4BD50",
+        borderRadius: 6,
+        borderSkipped: false,
+      },
+    ],
+  },
+  // continuation
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Revenu de votre compagnie en 2024",
+        padding: {
+          bottom: 16,
+        },
+        font: {
+          size: 16,
+          weight: "normal",
+        },
+      },
+      tooltip: {
+        backgroundColor: "#FFFFFF",
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [2, 4],
+        },
+        grid: {
+          color: "#27292D",
+        },
+        title: {
+          text: "2023",
+        },
+      },
+      y: {
+        grid: {
+          color: "#27292D",
+        },
+        border: {
+          dash: [2, 4],
+        },
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Revenue (million [f])",
+        },
+      },
+    },
+  },
 });
 

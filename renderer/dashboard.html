@@ -36,107 +36,54 @@
             </li>
         </ul>
     </div>
-    <div class="main-content">
-        <h2 class="">Dashboard</h2>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Statistiques clés -->
-                <div class="col-lg-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Ventes du jour</h5>
-                            <p class="card-text" id="daily-sales">0 F</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre de commandes</h5>
-                            <p class="card-text" id="order-count">0</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Plats les plus vendus</h5>
-                            <p class="card-text" id="top-dishes">N/A</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Statut des stocks</h5>
-                            <p class="card-text" id="stock-status">N/A</p>
-                        </div>
+    <div class="col-md-10 main-content">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Commandes Totales</h6>
+                        <p class="card-text" id="total-orders">5</p>
                     </div>
                 </div>
             </div>
-        
-            <!-- Graphiques et rapports -->
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Ventes quotidiennes/mensuelles</h5>
-                            <canvas id="sales-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Commandes par catégorie</h5>
-                            <canvas id="orders-category-chart"></canvas>
-                        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Revenus Totaux</h6>
+                        <p class="card-text" id="total-revenue">10500</p>
                     </div>
                 </div>
             </div>
-        
-            <!-- Commandes en cours -->
-            <div class="row">
-                <div class="col-lg-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Commandes en cours</h5>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID Commande</th>
-                                        <th>Client</th>
-                                        <th>Statut</th>
-                                        <th>Heure de la commande</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="ongoing-orders">
-                                    <!-- Les commandes seront insérées ici par le script -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Feedback des clients -->
-            <div class="row">
-                <div class="col-lg-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Avis récents</h5>
-                            <div id="customer-feedback">
-                                <!-- Les avis des clients seront insérés ici par le script -->
-                            </div>
-                        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Clients Totaux</h6>
+                        <p class="card-text" id="total-customers">8</p>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <div class="widget ml-3">
+            <canvas id="revenues"></canvas>
+        </div>
+        <div class="row mt-4">
+            
+            
+        </div>
     </div>
-    <script src="js/DashboardScript.js"></script>
-    <script src="js/script.js"></script>
+</div>
+</div>
+<script>
+    function closeForm() {
+    ipcRenderer.send('close-main-window');
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+ <script src="js/script.js"></script>
 </body>
 </html>
