@@ -176,7 +176,7 @@ h1,h2,h3 {
         .card {
             width: 8rem;
             height: 9rem;
-            margin: 10px;
+            margin: 7px;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -250,7 +250,7 @@ h1,h2,h3 {
             background-color: white;
             width: 14rem;
             height: 4rem;
-            left: 100px;
+            left: 90px;
             position: relative; 
         }
         
@@ -348,6 +348,7 @@ h1,h2,h3 {
         .carte{
             background-color: white;
             left: 100px;
+            border-radius: 20px;
         }
 
         :root {
@@ -370,6 +371,7 @@ h1,h2,h3 {
             max-width: 600px;
             width: 100%;
             min-width: 300px;
+            color: #1A1C1E;
         }
         
         .widget canvas {

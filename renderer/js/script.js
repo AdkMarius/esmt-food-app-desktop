@@ -357,7 +357,8 @@ document.addEventListener("DOMContentLoaded", async function() {
         cardGroup.innerHTML = '';
 
         const categoriesRow = document.createElement('div');
-        categoriesRow.className = 'row carte ml-3';
+        categoriesRow.className = 'row carte ';
+        categoriesRow.style= 'width :80%';
 
         categoryResult.data.forEach(category => {
             const col = document.createElement('div');
@@ -473,7 +474,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 //*********************************************************Dashboard******************************* */
 const ctx = document.getElementById("revenues");
 
-Chart.defaults.color = "#FFF";
+Chart.defaults.color = "#000";
 Chart.defaults.font.family = "Open Sans";
 
 new Chart(ctx, {
@@ -516,7 +517,7 @@ new Chart(ctx, {
       },
       title: {
         display: true,
-        text: "Revenu de votre compagnie en 2024",
+        text: "Revenu du restaurant",
         padding: {
           bottom: 16,
         },
@@ -551,7 +552,7 @@ new Chart(ctx, {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Revenue (million [f])",
+          text: "Revenus",
         },
       },
     },
